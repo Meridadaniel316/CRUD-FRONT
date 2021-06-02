@@ -60,14 +60,29 @@ const Form = () => {
       })
   }
 
-  return <form ref={formRef}>
+  return <div id="nuevoitem">
+    <form ref={formRef} class="w3-container">
+      
+      <p>
+      <center>Agregar un nuevo elemento <b>al CRUD</b></center>
+      <br></br>
+      <input type="text" name="name" defaultValue={item.name} onChange={(event) => {
+      setState({ ...state, name: event.target.value })
+    }} ></input>
+      <br></br><br></br>
+      <center><b>NOTA:</b> El sistema fue desarrollado por Daniel Castaño Merida del training ciclo 2 Sofka U</center>
+      </p>
+  </form>
+    </div>
+  /*<form ref={formRef}>
+    
     <input type="text" name="name" defaultValue={item.name} onChange={(event) => {
       setState({ ...state, name: event.target.value })
     }} ></input>
     {item.id &&  <button onClick={onEdit}>Actualizar</button>}
     {!item.id &&  <button onClick={onAdd}>Agregar</button>}
 
-  </form>
+  </form>*/
 }
 
 const List = () => {
@@ -95,7 +110,7 @@ const List = () => {
     dispatch({ type: "edit-item", item: todo })
   }
   
-  return <div>
+  return <div id="listaitems">
     <table>
       <thead>
         <tr>
@@ -117,6 +132,29 @@ const List = () => {
       </tbody>
     </table>
   </div>
+  
+  /*<div>
+    <table>
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>Nombre</td>
+          <td>¿Esta completado?</td>
+        </tr>
+      </thead>
+      <tbody>
+        {state.list.map((todo) => {
+          return <tr key={todo.id}>
+            <td>{todo.id}</td>
+            <td>{todo.name}</td>
+            <td>{todo.isCompleted  === true ? "SI" : "NO"}</td>
+            <td><button onClick={() => onDelete(todo.id)}>Eliminar</button></td>
+            <td><button onClick={() => onEdit(todo)}>Editar</button></td>
+          </tr>
+        })}
+      </tbody>
+    </table>
+  </div>*/
 }
 
 function reducer(state, action) {
