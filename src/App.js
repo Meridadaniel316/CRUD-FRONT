@@ -61,7 +61,7 @@ const Form = () => {
   }
 
   return <div id="nuevoitem">
-    <form ref={formRef} class="w3-container">
+    <form ref={formRef}>
       
       <p>
       <center>Agregar un nuevo elemento <b>al CRUD</b></center>
@@ -71,21 +71,12 @@ const Form = () => {
     }} ></input>
       <br></br><br></br>
       <center><b>NOTA:</b> El sistema fue desarrollado por Daniel Castaño Merida del training ciclo 2 Sofka U
-      {item.id && <button class="button button1" onClick={onEdit}>Actualizar</button>}
-      {!item.id &&  <button class="button button2" onClick={onAdd}>Agregar</button>}
+      {item.id && <button class="button button2" onClick={onEdit}>Actualizar</button>}
+      {!item.id &&  <button class="button button1" onClick={onAdd}>Agregar</button>}
       </center>
       </p>
   </form>
     </div>
-  /*<form ref={formRef}>
-    
-    <input type="text" name="name" defaultValue={item.name} onChange={(event) => {
-      setState({ ...state, name: event.target.value })
-    }} ></input>
-    {item.id &&  <button onClick={onEdit}>Actualizar</button>}
-    {!item.id &&  <button onClick={onAdd}>Agregar</button>}
-
-  </form>*/
 }
 
 const List = () => {
@@ -117,9 +108,9 @@ const List = () => {
     <table>
       <thead>
         <tr>
-          <td>ID</td>
-          <td>Nombre</td>
-          <td>¿Esta completado?</td>
+          <td width="33%">ID</td>
+          <td width="33%">Nombre</td>
+          <td width="33%">¿Esta completado?</td>
         </tr>
       </thead>
       <tbody>
@@ -128,36 +119,15 @@ const List = () => {
             <td>{todo.id}</td>
             <td>{todo.name}</td>
             <td>{todo.isCompleted  === true ? "SI" : "NO"}</td>
-            <td><button onClick={() => onDelete(todo.id)}>Eliminar</button></td>
-            <td><button onClick={() => onEdit(todo)}>Editar</button></td>
+            <td width="33%"><button class="button buttondelete" onClick={() => onDelete(todo.id)}>Eliminar</button></td>
+            <td width="33%"><button class="button buttonupdate"onClick={() => onEdit(todo)}>Editar</button></td>
           </tr>
         })}
       </tbody>
     </table>
+    
   </div>
-  
-  /*<div>
-    <table>
-      <thead>
-        <tr>
-          <td>ID</td>
-          <td>Nombre</td>
-          <td>¿Esta completado?</td>
-        </tr>
-      </thead>
-      <tbody>
-        {state.list.map((todo) => {
-          return <tr key={todo.id}>
-            <td>{todo.id}</td>
-            <td>{todo.name}</td>
-            <td>{todo.isCompleted  === true ? "SI" : "NO"}</td>
-            <td><button onClick={() => onDelete(todo.id)}>Eliminar</button></td>
-            <td><button onClick={() => onEdit(todo)}>Editar</button></td>
-          </tr>
-        })}
-      </tbody>
-    </table>
-  </div>*/
+
 }
 
 function reducer(state, action) {
