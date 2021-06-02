@@ -15,18 +15,29 @@ code {
     monospace;
 }
 
+div#general{
+  margin: auto;
+  margin-top: 75px;
+  width: 800px;
+  height: auto;
+  background-color: white;
+  border-color: rgb(209, 209, 209);
+  border-width: 1px;
+  border-style: solid;
+}
+
 div#nuevoitem{
-  margin-top: 70px;
-  margin-left: 25%;
+  margin-top: 30px;
   width: 640px;
   height: auto;
 }
 
 div#listaitems{
-  margin-left: 25%;
   margin-top: 20px;
+  margin-bottom: 20px;
   width: 640px;
   height: auto;
+  
 }
 
 input[type=text] {

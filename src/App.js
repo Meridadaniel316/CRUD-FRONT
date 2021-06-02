@@ -77,8 +77,7 @@ const Form = () => {
   </form>*/
     return <div id="nuevoitem">
     <form ref={formRef}>
-      
-      <p>
+
       <center>Agregar un nuevo elemento <b>al CRUD</b></center>
       <br></br>
 
@@ -90,7 +89,6 @@ const Form = () => {
       {item.id && <button class="button button2" onClick={onEdit}>Actualizar</button>}
       {!item.id &&  <button class="button button1" onClick={onAdd}>Agregar</button>}
       </center>
-      </p>
   </form>
     </div>
   
@@ -142,7 +140,9 @@ const List = () => {
   };
 
   const decorationDone = {
-    textDecoration: 'line-through'
+    textDecoration: 'line-through',
+    color: '#f44336',
+    textDecoration: 'bold'
   };
   return <div id="listaitems">
     <table>
@@ -155,10 +155,10 @@ const List = () => {
       </thead>
       <tbody>
         {currentList.map((todo) => {
-          return <tr key={todo.id}>
+          return <tr key={todo.id} style={todo.completed ? decorationDone : {}}>
             <td>{todo.id}</td>
             <td>{todo.name}</td>
-            <td>{todo.isCompleted  === true ? "SI" : "NO"}</td>
+            <td><input type="checkbox" defaultChecked={todo.completed} onChange={(event) => onChange(event, todo)}></input></td>
             <td width="33%"><button class="button buttondelete" onClick={() => onDelete(todo.id)}>Eliminar</button></td>
             <td width="33%"><button class="button buttonupdate"onClick={() => onEdit(todo)}>Editar</button></td>
           </tr>
@@ -218,55 +218,11 @@ const StoreProvider = ({ children }) => {
 
 function App() {
   return <StoreProvider>
-    <h3>To-Do List</h3>
-    <Form />
+    <div id="general">
+      <Form />
     <List />
+    </div>
   </StoreProvider>
 }
 
 export default App;
-/*
-  return <div id="nuevoitem">
-    <form ref={formRef}>
-      
-      <p>
-      <center>Agregar un nuevo elemento <b>al CRUD</b></center>
-      <br></br>
-      <input type="text" name="name" defaultValue={item.name} onChange={(event) => {
-      setState({ ...state, name: event.target.value })
-    }} ></input>
-      <br></br><br></br>
-      <center><b>NOTA:</b> El sistema fue desarrollado por Daniel Castaño Merida del training ciclo 2 Sofka U
-      {item.id && <button class="button button2" onClick={onEdit}>Actualizar</button>}
-      {!item.id &&  <button class="button button1" onClick={onAdd}>Agregar</button>}
-      </center>
-      </p>
-  </form>
-    </div>
-
-width="33%"
-
-    <div id="listaitems">
-    <table>
-      <thead>
-        <tr>
-          <td width="33%">ID</td>
-          <td width="33%">Nombre</td>
-          <td width="33%">¿Esta completado?</td>
-        </tr>
-      </thead>
-      <tbody>
-        {state.list.map((todo) => {
-          return <tr key={todo.id}>
-            <td>{todo.id}</td>
-            <td>{todo.name}</td>
-            <td>{todo.isCompleted  === true ? "SI" : "NO"}</td>
-            <td width="33%"><button class="button buttondelete" onClick={() => onDelete(todo.id)}>Eliminar</button></td>
-            <td width="33%"><button class="button buttonupdate"onClick={() => onEdit(todo)}>Editar</button></td>
-          </tr>
-        })}
-      </tbody>
-    </table>
-    
-  </div>
-*/
