@@ -70,7 +70,10 @@ const Form = () => {
       setState({ ...state, name: event.target.value })
     }} ></input>
       <br></br><br></br>
-      <center><b>NOTA:</b> El sistema fue desarrollado por Daniel Castaño Merida del training ciclo 2 Sofka U</center>
+      <center><b>NOTA:</b> El sistema fue desarrollado por Daniel Castaño Merida del training ciclo 2 Sofka U
+      {item.id && <button class="button button1" onClick={onEdit}>Actualizar</button>}
+      {!item.id &&  <button class="button button2" onClick={onAdd}>Agregar</button>}
+      </center>
       </p>
   </form>
     </div>
