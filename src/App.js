@@ -10,7 +10,7 @@ const Store = createContext(initialState)
 
 const Form = () => {
   const formRef = useRef(null);
-  const { dispatch } = useContext(Store);
+  const { dispatch} = useContext(Store);
   const [state, setState] = useState({});
 
   const onAdd = (event) => {
@@ -58,6 +58,15 @@ const List = () => {
       })
   }, [state.list.length, dispatch]);
   
+  const onDelete = (id) => {
+    fetch(HOST_API + "/" + id + "/todo", {
+      method: "DELETE"
+    })
+      .then((list) => {
+        dispatch({ type: "delete-item", id })
+      })
+  };
+
   return <div>
     <table>
       <thead>
@@ -73,6 +82,7 @@ const List = () => {
             <td>{todo.id}</td>
             <td>{todo.name}</td>
             <td>{todo.isCompleted}</td>
+            <td><button onClick={() => onDelete(todo.id)}>Eliminar</button></td>
           </tr>
         })}
       </tbody>
@@ -82,6 +92,11 @@ const List = () => {
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'delete-item':
+      const listUpdate = state.list.filter((item) => {
+        return item.id !== action.id;
+      });
+      return { ...state, list: listUpdate }
     case 'update-list':
       return { ...state, list: action.list }
     case 'edit-item':
