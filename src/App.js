@@ -6,6 +6,18 @@ const initialState = {
 }
 const Store = createContext(initialState)
 
+const Form = () => {
+  const formRef = useRef(null);
+
+  return <form ref={formRef}>
+  <input type="text" name="name" onChange={(event) => {
+    setState({ ...state, name: event.target.value })
+  }} ></input>
+ <button onClick={onAdd}>Agregar</button>
+
+</form>
+}
+
 const List = () => {
   const { dispatch, state } = useContext(Store);
 
